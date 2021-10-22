@@ -1,0 +1,1686 @@
+{
+  "source": {
+    "hash": "0x2e1cd668f0181b47437c4fc91d1e23c8a43fab6928a1f62e0d751a0b7ab3f0e2",
+    "language": "ink! 3.0.0-rc6",
+    "compiler": "rustc 1.57.0-nightly"
+  },
+  "contract": {
+    "name": "dotnft",
+    "version": "0.1.0",
+    "authors": [
+      "[your_name] <[your_email]>"
+    ]
+  },
+  "V1": {
+    "spec": {
+      "constructors": [
+        {
+          "args": [
+            {
+              "name": "creator",
+              "type": {
+                "displayName": [
+                  "AccountId"
+                ],
+                "type": 0
+              }
+            },
+            {
+              "name": "provider",
+              "type": {
+                "displayName": [
+                  "AccountId"
+                ],
+                "type": 0
+              }
+            }
+          ],
+          "docs": [],
+          "name": [
+            "new"
+          ],
+          "selector": "0x9bae9d5e"
+        }
+      ],
+      "docs": [],
+      "events": [
+        {
+          "args": [
+            {
+              "docs": [
+                " Token ID"
+              ],
+              "indexed": true,
+              "name": "token",
+              "type": {
+                "displayName": [
+                  "TokenId"
+                ],
+                "type": 3
+              }
+            },
+            {
+              "docs": [
+                " Pre-transfer owner of the token, `None` signals minting"
+              ],
+              "indexed": true,
+              "name": "from",
+              "type": {
+                "displayName": [
+                  "Option"
+                ],
+                "type": 15
+              }
+            },
+            {
+              "docs": [
+                " Post-transfer owner of the token, `None` signals destruction"
+              ],
+              "indexed": true,
+              "name": "to",
+              "type": {
+                "displayName": [
+                  "Option"
+                ],
+                "type": 15
+              }
+            }
+          ],
+          "docs": [
+            " Transfer of an NFT"
+          ],
+          "name": "Transfer"
+        },
+        {
+          "args": [
+            {
+              "docs": [
+                " Token ID"
+              ],
+              "indexed": true,
+              "name": "token",
+              "type": {
+                "displayName": [
+                  "TokenId"
+                ],
+                "type": 3
+              }
+            },
+            {
+              "docs": [
+                " Owner of the token"
+              ],
+              "indexed": true,
+              "name": "owner",
+              "type": {
+                "displayName": [
+                  "AccountId"
+                ],
+                "type": 0
+              }
+            },
+            {
+              "docs": [
+                " New approved account, `None` removes the approval."
+              ],
+              "indexed": true,
+              "name": "approved",
+              "type": {
+                "displayName": [
+                  "Option"
+                ],
+                "type": 15
+              }
+            }
+          ],
+          "docs": [
+            " Granting approval to transfer an NFT on someones behalf"
+          ],
+          "name": "Approval"
+        },
+        {
+          "args": [
+            {
+              "docs": [],
+              "indexed": true,
+              "name": "owner",
+              "type": {
+                "displayName": [
+                  "AccountId"
+                ],
+                "type": 0
+              }
+            },
+            {
+              "docs": [],
+              "indexed": true,
+              "name": "operator",
+              "type": {
+                "displayName": [
+                  "AccountId"
+                ],
+                "type": 0
+              }
+            },
+            {
+              "docs": [],
+              "indexed": false,
+              "name": "status",
+              "type": {
+                "displayName": [
+                  "bool"
+                ],
+                "type": 14
+              }
+            }
+          ],
+          "docs": [
+            " Granting operator rights"
+          ],
+          "name": "OperatorStatusChange"
+        },
+        {
+          "args": [
+            {
+              "docs": [],
+              "indexed": true,
+              "name": "owner",
+              "type": {
+                "displayName": [
+                  "AccountId"
+                ],
+                "type": 0
+              }
+            },
+            {
+              "docs": [],
+              "indexed": true,
+              "name": "token",
+              "type": {
+                "displayName": [
+                  "TokenId"
+                ],
+                "type": 3
+              }
+            },
+            {
+              "docs": [],
+              "indexed": false,
+              "name": "amount",
+              "type": {
+                "displayName": [
+                  "Balance"
+                ],
+                "type": 3
+              }
+            }
+          ],
+          "docs": [
+            " Token listed for sale"
+          ],
+          "name": "ListToken"
+        },
+        {
+          "args": [
+            {
+              "docs": [],
+              "indexed": true,
+              "name": "owner",
+              "type": {
+                "displayName": [
+                  "AccountId"
+                ],
+                "type": 0
+              }
+            },
+            {
+              "docs": [],
+              "indexed": true,
+              "name": "token",
+              "type": {
+                "displayName": [
+                  "TokenId"
+                ],
+                "type": 3
+              }
+            }
+          ],
+          "docs": [
+            " Token no longer for sale"
+          ],
+          "name": "UnlistToken"
+        },
+        {
+          "args": [
+            {
+              "docs": [],
+              "indexed": true,
+              "name": "seller",
+              "type": {
+                "displayName": [
+                  "AccountId"
+                ],
+                "type": 0
+              }
+            },
+            {
+              "docs": [],
+              "indexed": true,
+              "name": "buyer",
+              "type": {
+                "displayName": [
+                  "AccountId"
+                ],
+                "type": 0
+              }
+            },
+            {
+              "docs": [],
+              "indexed": true,
+              "name": "token",
+              "type": {
+                "displayName": [
+                  "TokenId"
+                ],
+                "type": 3
+              }
+            },
+            {
+              "docs": [],
+              "indexed": false,
+              "name": "price",
+              "type": {
+                "displayName": [
+                  "Balance"
+                ],
+                "type": 3
+              }
+            }
+          ],
+          "docs": [
+            " Granting operator rights"
+          ],
+          "name": "OfferTaken"
+        }
+      ],
+      "messages": [
+        {
+          "args": [],
+          "docs": [
+            " Show number of minted NFT's"
+          ],
+          "mutates": false,
+          "name": [
+            "minted"
+          ],
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "TokenId"
+            ],
+            "type": 3
+          },
+          "selector": "0x8856008a"
+        },
+        {
+          "args": [],
+          "docs": [
+            " Show the creator of the contract (and minter of new tokens)"
+          ],
+          "mutates": false,
+          "name": [
+            "creator"
+          ],
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "AccountId"
+            ],
+            "type": 0
+          },
+          "selector": "0xbf73316b"
+        },
+        {
+          "args": [
+            {
+              "name": "owner",
+              "type": {
+                "displayName": [
+                  "AccountId"
+                ],
+                "type": 0
+              }
+            }
+          ],
+          "docs": [
+            " Show number of held NFT's"
+          ],
+          "mutates": false,
+          "name": [
+            "balance"
+          ],
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "TokenId"
+            ],
+            "type": 3
+          },
+          "selector": "0xb48c1684"
+        },
+        {
+          "args": [
+            {
+              "name": "token",
+              "type": {
+                "displayName": [
+                  "TokenId"
+                ],
+                "type": 3
+              }
+            }
+          ],
+          "docs": [
+            " Gets the owner of a specific NFT"
+          ],
+          "mutates": false,
+          "name": [
+            "owner"
+          ],
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "Option"
+            ],
+            "type": 15
+          },
+          "selector": "0xfeaea4fa"
+        },
+        {
+          "args": [
+            {
+              "name": "token",
+              "type": {
+                "displayName": [
+                  "TokenId"
+                ],
+                "type": 3
+              }
+            },
+            {
+              "name": "to",
+              "type": {
+                "displayName": [
+                  "AccountId"
+                ],
+                "type": 0
+              }
+            }
+          ],
+          "docs": [
+            " Safely transfer an NFT"
+          ],
+          "mutates": true,
+          "name": [
+            "transfer"
+          ],
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "MutResult"
+            ],
+            "type": 16
+          },
+          "selector": "0x84a15da1"
+        },
+        {
+          "args": [
+            {
+              "name": "amount",
+              "type": {
+                "displayName": [
+                  "TokenId"
+                ],
+                "type": 3
+              }
+            }
+          ],
+          "docs": [
+            " Minting new tokens, only the creator of the contract is allowed to do so"
+          ],
+          "mutates": true,
+          "name": [
+            "mint"
+          ],
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "MutResult"
+            ],
+            "type": 16
+          },
+          "selector": "0xcfdd9aa2"
+        },
+        {
+          "args": [
+            {
+              "name": "token",
+              "type": {
+                "displayName": [
+                  "TokenId"
+                ],
+                "type": 3
+              }
+            }
+          ],
+          "docs": [
+            " Destroy a token"
+          ],
+          "mutates": true,
+          "name": [
+            "burn"
+          ],
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "MutResult"
+            ],
+            "type": 16
+          },
+          "selector": "0xb1efc17b"
+        },
+        {
+          "args": [
+            {
+              "name": "token",
+              "type": {
+                "displayName": [
+                  "TokenId"
+                ],
+                "type": 3
+              }
+            },
+            {
+              "name": "approved",
+              "type": {
+                "displayName": [
+                  "AccountId"
+                ],
+                "type": 0
+              }
+            }
+          ],
+          "docs": [
+            " Set approval, remove using the 0x0 address"
+          ],
+          "mutates": true,
+          "name": [
+            "approve"
+          ],
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "MutResult"
+            ],
+            "type": 16
+          },
+          "selector": "0x681266a0"
+        },
+        {
+          "args": [
+            {
+              "name": "token",
+              "type": {
+                "displayName": [
+                  "TokenId"
+                ],
+                "type": 3
+              }
+            }
+          ],
+          "docs": [
+            " Read which address is approved to transfer an NFT"
+          ],
+          "mutates": false,
+          "name": [
+            "get_approved"
+          ],
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "Option"
+            ],
+            "type": 15
+          },
+          "selector": "0x27592dea"
+        },
+        {
+          "args": [
+            {
+              "name": "operator",
+              "type": {
+                "displayName": [
+                  "AccountId"
+                ],
+                "type": 0
+              }
+            },
+            {
+              "name": "status",
+              "type": {
+                "displayName": [
+                  "bool"
+                ],
+                "type": 14
+              }
+            }
+          ],
+          "docs": [
+            " Set or unset operator"
+          ],
+          "mutates": true,
+          "name": [
+            "set_operator"
+          ],
+          "payable": false,
+          "returnType": null,
+          "selector": "0xf4dc0722"
+        },
+        {
+          "args": [
+            {
+              "name": "owner",
+              "type": {
+                "displayName": [
+                  "AccountId"
+                ],
+                "type": 0
+              }
+            },
+            {
+              "name": "operator",
+              "type": {
+                "displayName": [
+                  "AccountId"
+                ],
+                "type": 0
+              }
+            }
+          ],
+          "docs": [
+            " Read operator status"
+          ],
+          "mutates": false,
+          "name": [
+            "is_operator"
+          ],
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "bool"
+            ],
+            "type": 14
+          },
+          "selector": "0x9b8cc278"
+        },
+        {
+          "args": [
+            {
+              "name": "token",
+              "type": {
+                "displayName": [
+                  "TokenId"
+                ],
+                "type": 3
+              }
+            },
+            {
+              "name": "amount",
+              "type": {
+                "displayName": [
+                  "Balance"
+                ],
+                "type": 3
+              }
+            }
+          ],
+          "docs": [
+            " Puts a token up for sale"
+          ],
+          "mutates": true,
+          "name": [
+            "list_offer"
+          ],
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "MutResult"
+            ],
+            "type": 16
+          },
+          "selector": "0x3d5d10ad"
+        },
+        {
+          "args": [
+            {
+              "name": "token",
+              "type": {
+                "displayName": [
+                  "TokenId"
+                ],
+                "type": 3
+              }
+            }
+          ],
+          "docs": [
+            " Removes a token from current offers"
+          ],
+          "mutates": true,
+          "name": [
+            "unlist_offer"
+          ],
+          "payable": true,
+          "returnType": {
+            "displayName": [
+              "MutResult"
+            ],
+            "type": 16
+          },
+          "selector": "0x61840b41"
+        },
+        {
+          "args": [
+            {
+              "name": "token",
+              "type": {
+                "displayName": [
+                  "TokenId"
+                ],
+                "type": 3
+              }
+            }
+          ],
+          "docs": [
+            " Accept a token offer"
+          ],
+          "mutates": true,
+          "name": [
+            "take_offer"
+          ],
+          "payable": true,
+          "returnType": {
+            "displayName": [
+              "MutResult"
+            ],
+            "type": 16
+          },
+          "selector": "0x8317120c"
+        },
+        {
+          "args": [],
+          "docs": [
+            " Retrieval of all tokens currently listed for selling"
+          ],
+          "mutates": false,
+          "name": [
+            "offers"
+          ],
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "ink_prelude",
+              "vec",
+              "Vec"
+            ],
+            "type": 19
+          },
+          "selector": "0x340b3cb0"
+        }
+      ]
+    },
+    "storage": {
+      "struct": {
+        "fields": [
+          {
+            "layout": {
+              "cell": {
+                "key": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                "ty": 0
+              }
+            },
+            "name": "provider"
+          },
+          {
+            "layout": {
+              "cell": {
+                "key": "0x0100000000000000000000000000000000000000000000000000000000000000",
+                "ty": 0
+              }
+            },
+            "name": "creator"
+          },
+          {
+            "layout": {
+              "cell": {
+                "key": "0x0200000000000000000000000000000000000000000000000000000000000000",
+                "ty": 3
+              }
+            },
+            "name": "minted"
+          },
+          {
+            "layout": {
+              "struct": {
+                "fields": [
+                  {
+                    "layout": {
+                      "struct": {
+                        "fields": [
+                          {
+                            "layout": {
+                              "cell": {
+                                "key": "0x0300000000000000000000000000000000000000000000000000000000000000",
+                                "ty": 4
+                              }
+                            },
+                            "name": "header"
+                          },
+                          {
+                            "layout": {
+                              "struct": {
+                                "fields": [
+                                  {
+                                    "layout": {
+                                      "cell": {
+                                        "key": "0x0400000000000000000000000000000000000000000000000000000000000000",
+                                        "ty": 5
+                                      }
+                                    },
+                                    "name": "len"
+                                  },
+                                  {
+                                    "layout": {
+                                      "array": {
+                                        "cellsPerElem": 1,
+                                        "layout": {
+                                          "cell": {
+                                            "key": "0x0400000001000000000000000000000000000000000000000000000000000000",
+                                            "ty": 6
+                                          }
+                                        },
+                                        "len": 4294967295,
+                                        "offset": "0x0500000000000000000000000000000000000000000000000000000000000000"
+                                      }
+                                    },
+                                    "name": "elems"
+                                  }
+                                ]
+                              }
+                            },
+                            "name": "entries"
+                          }
+                        ]
+                      }
+                    },
+                    "name": "keys"
+                  },
+                  {
+                    "layout": {
+                      "hash": {
+                        "layout": {
+                          "cell": {
+                            "key": "0x0500000001000000000000000000000000000000000000000000000000000000",
+                            "ty": 8
+                          }
+                        },
+                        "offset": "0x0400000001000000000000000000000000000000000000000000000000000000",
+                        "strategy": {
+                          "hasher": "Blake2x256",
+                          "postfix": "",
+                          "prefix": "0x696e6b20686173686d6170"
+                        }
+                      }
+                    },
+                    "name": "values"
+                  }
+                ]
+              }
+            },
+            "name": "owners"
+          },
+          {
+            "layout": {
+              "struct": {
+                "fields": [
+                  {
+                    "layout": {
+                      "struct": {
+                        "fields": [
+                          {
+                            "layout": {
+                              "cell": {
+                                "key": "0x0500000001000000000000000000000000000000000000000000000000000000",
+                                "ty": 4
+                              }
+                            },
+                            "name": "header"
+                          },
+                          {
+                            "layout": {
+                              "struct": {
+                                "fields": [
+                                  {
+                                    "layout": {
+                                      "cell": {
+                                        "key": "0x0600000001000000000000000000000000000000000000000000000000000000",
+                                        "ty": 5
+                                      }
+                                    },
+                                    "name": "len"
+                                  },
+                                  {
+                                    "layout": {
+                                      "array": {
+                                        "cellsPerElem": 1,
+                                        "layout": {
+                                          "cell": {
+                                            "key": "0x0600000002000000000000000000000000000000000000000000000000000000",
+                                            "ty": 9
+                                          }
+                                        },
+                                        "len": 4294967295,
+                                        "offset": "0x0700000001000000000000000000000000000000000000000000000000000000"
+                                      }
+                                    },
+                                    "name": "elems"
+                                  }
+                                ]
+                              }
+                            },
+                            "name": "entries"
+                          }
+                        ]
+                      }
+                    },
+                    "name": "keys"
+                  },
+                  {
+                    "layout": {
+                      "hash": {
+                        "layout": {
+                          "cell": {
+                            "key": "0x0700000002000000000000000000000000000000000000000000000000000000",
+                            "ty": 10
+                          }
+                        },
+                        "offset": "0x0600000002000000000000000000000000000000000000000000000000000000",
+                        "strategy": {
+                          "hasher": "Blake2x256",
+                          "postfix": "",
+                          "prefix": "0x696e6b20686173686d6170"
+                        }
+                      }
+                    },
+                    "name": "values"
+                  }
+                ]
+              }
+            },
+            "name": "balances"
+          },
+          {
+            "layout": {
+              "struct": {
+                "fields": [
+                  {
+                    "layout": {
+                      "struct": {
+                        "fields": [
+                          {
+                            "layout": {
+                              "cell": {
+                                "key": "0x0700000002000000000000000000000000000000000000000000000000000000",
+                                "ty": 4
+                              }
+                            },
+                            "name": "header"
+                          },
+                          {
+                            "layout": {
+                              "struct": {
+                                "fields": [
+                                  {
+                                    "layout": {
+                                      "cell": {
+                                        "key": "0x0800000002000000000000000000000000000000000000000000000000000000",
+                                        "ty": 5
+                                      }
+                                    },
+                                    "name": "len"
+                                  },
+                                  {
+                                    "layout": {
+                                      "array": {
+                                        "cellsPerElem": 1,
+                                        "layout": {
+                                          "cell": {
+                                            "key": "0x0800000003000000000000000000000000000000000000000000000000000000",
+                                            "ty": 6
+                                          }
+                                        },
+                                        "len": 4294967295,
+                                        "offset": "0x0900000002000000000000000000000000000000000000000000000000000000"
+                                      }
+                                    },
+                                    "name": "elems"
+                                  }
+                                ]
+                              }
+                            },
+                            "name": "entries"
+                          }
+                        ]
+                      }
+                    },
+                    "name": "keys"
+                  },
+                  {
+                    "layout": {
+                      "hash": {
+                        "layout": {
+                          "cell": {
+                            "key": "0x0900000003000000000000000000000000000000000000000000000000000000",
+                            "ty": 8
+                          }
+                        },
+                        "offset": "0x0800000003000000000000000000000000000000000000000000000000000000",
+                        "strategy": {
+                          "hasher": "Blake2x256",
+                          "postfix": "",
+                          "prefix": "0x696e6b20686173686d6170"
+                        }
+                      }
+                    },
+                    "name": "values"
+                  }
+                ]
+              }
+            },
+            "name": "approvals"
+          },
+          {
+            "layout": {
+              "struct": {
+                "fields": [
+                  {
+                    "layout": {
+                      "struct": {
+                        "fields": [
+                          {
+                            "layout": {
+                              "cell": {
+                                "key": "0x0900000003000000000000000000000000000000000000000000000000000000",
+                                "ty": 4
+                              }
+                            },
+                            "name": "header"
+                          },
+                          {
+                            "layout": {
+                              "struct": {
+                                "fields": [
+                                  {
+                                    "layout": {
+                                      "cell": {
+                                        "key": "0x0a00000003000000000000000000000000000000000000000000000000000000",
+                                        "ty": 5
+                                      }
+                                    },
+                                    "name": "len"
+                                  },
+                                  {
+                                    "layout": {
+                                      "array": {
+                                        "cellsPerElem": 1,
+                                        "layout": {
+                                          "cell": {
+                                            "key": "0x0a00000004000000000000000000000000000000000000000000000000000000",
+                                            "ty": 11
+                                          }
+                                        },
+                                        "len": 4294967295,
+                                        "offset": "0x0b00000003000000000000000000000000000000000000000000000000000000"
+                                      }
+                                    },
+                                    "name": "elems"
+                                  }
+                                ]
+                              }
+                            },
+                            "name": "entries"
+                          }
+                        ]
+                      }
+                    },
+                    "name": "keys"
+                  },
+                  {
+                    "layout": {
+                      "hash": {
+                        "layout": {
+                          "cell": {
+                            "key": "0x0b00000004000000000000000000000000000000000000000000000000000000",
+                            "ty": 13
+                          }
+                        },
+                        "offset": "0x0a00000004000000000000000000000000000000000000000000000000000000",
+                        "strategy": {
+                          "hasher": "Blake2x256",
+                          "postfix": "",
+                          "prefix": "0x696e6b20686173686d6170"
+                        }
+                      }
+                    },
+                    "name": "values"
+                  }
+                ]
+              }
+            },
+            "name": "operators"
+          },
+          {
+            "layout": {
+              "struct": {
+                "fields": [
+                  {
+                    "layout": {
+                      "struct": {
+                        "fields": [
+                          {
+                            "layout": {
+                              "cell": {
+                                "key": "0x0b00000004000000000000000000000000000000000000000000000000000000",
+                                "ty": 4
+                              }
+                            },
+                            "name": "header"
+                          },
+                          {
+                            "layout": {
+                              "struct": {
+                                "fields": [
+                                  {
+                                    "layout": {
+                                      "cell": {
+                                        "key": "0x0c00000004000000000000000000000000000000000000000000000000000000",
+                                        "ty": 5
+                                      }
+                                    },
+                                    "name": "len"
+                                  },
+                                  {
+                                    "layout": {
+                                      "array": {
+                                        "cellsPerElem": 1,
+                                        "layout": {
+                                          "cell": {
+                                            "key": "0x0c00000005000000000000000000000000000000000000000000000000000000",
+                                            "ty": 6
+                                          }
+                                        },
+                                        "len": 4294967295,
+                                        "offset": "0x0d00000004000000000000000000000000000000000000000000000000000000"
+                                      }
+                                    },
+                                    "name": "elems"
+                                  }
+                                ]
+                              }
+                            },
+                            "name": "entries"
+                          }
+                        ]
+                      }
+                    },
+                    "name": "keys"
+                  },
+                  {
+                    "layout": {
+                      "hash": {
+                        "layout": {
+                          "cell": {
+                            "key": "0x0d00000005000000000000000000000000000000000000000000000000000000",
+                            "ty": 10
+                          }
+                        },
+                        "offset": "0x0c00000005000000000000000000000000000000000000000000000000000000",
+                        "strategy": {
+                          "hasher": "Blake2x256",
+                          "postfix": "",
+                          "prefix": "0x696e6b20686173686d6170"
+                        }
+                      }
+                    },
+                    "name": "values"
+                  }
+                ]
+              }
+            },
+            "name": "offers"
+          }
+        ]
+      }
+    },
+    "types": [
+      {
+        "id": 0,
+        "type": {
+          "def": {
+            "composite": {
+              "fields": [
+                {
+                  "type": 1,
+                  "typeName": "[u8; 32]"
+                }
+              ]
+            }
+          },
+          "path": [
+            "ink_env",
+            "types",
+            "AccountId"
+          ]
+        }
+      },
+      {
+        "id": 1,
+        "type": {
+          "def": {
+            "array": {
+              "len": 32,
+              "type": 2
+            }
+          }
+        }
+      },
+      {
+        "id": 2,
+        "type": {
+          "def": {
+            "primitive": "u8"
+          }
+        }
+      },
+      {
+        "id": 3,
+        "type": {
+          "def": {
+            "primitive": "u128"
+          }
+        }
+      },
+      {
+        "id": 4,
+        "type": {
+          "def": {
+            "composite": {
+              "fields": [
+                {
+                  "name": "last_vacant",
+                  "type": 5,
+                  "typeName": "Index"
+                },
+                {
+                  "name": "len",
+                  "type": 5,
+                  "typeName": "u32"
+                },
+                {
+                  "name": "len_entries",
+                  "type": 5,
+                  "typeName": "u32"
+                }
+              ]
+            }
+          },
+          "path": [
+            "ink_storage",
+            "collections",
+            "stash",
+            "Header"
+          ]
+        }
+      },
+      {
+        "id": 5,
+        "type": {
+          "def": {
+            "primitive": "u32"
+          }
+        }
+      },
+      {
+        "id": 6,
+        "type": {
+          "def": {
+            "variant": {
+              "variants": [
+                {
+                  "fields": [
+                    {
+                      "type": 7,
+                      "typeName": "VacantEntry"
+                    }
+                  ],
+                  "index": 0,
+                  "name": "Vacant"
+                },
+                {
+                  "fields": [
+                    {
+                      "type": 3,
+                      "typeName": "T"
+                    }
+                  ],
+                  "index": 1,
+                  "name": "Occupied"
+                }
+              ]
+            }
+          },
+          "params": [
+            {
+              "name": "T",
+              "type": 3
+            }
+          ],
+          "path": [
+            "ink_storage",
+            "collections",
+            "stash",
+            "Entry"
+          ]
+        }
+      },
+      {
+        "id": 7,
+        "type": {
+          "def": {
+            "composite": {
+              "fields": [
+                {
+                  "name": "next",
+                  "type": 5,
+                  "typeName": "Index"
+                },
+                {
+                  "name": "prev",
+                  "type": 5,
+                  "typeName": "Index"
+                }
+              ]
+            }
+          },
+          "path": [
+            "ink_storage",
+            "collections",
+            "stash",
+            "VacantEntry"
+          ]
+        }
+      },
+      {
+        "id": 8,
+        "type": {
+          "def": {
+            "composite": {
+              "fields": [
+                {
+                  "name": "value",
+                  "type": 0,
+                  "typeName": "V"
+                },
+                {
+                  "name": "key_index",
+                  "type": 5,
+                  "typeName": "KeyIndex"
+                }
+              ]
+            }
+          },
+          "params": [
+            {
+              "name": "V",
+              "type": 0
+            }
+          ],
+          "path": [
+            "ink_storage",
+            "collections",
+            "hashmap",
+            "ValueEntry"
+          ]
+        }
+      },
+      {
+        "id": 9,
+        "type": {
+          "def": {
+            "variant": {
+              "variants": [
+                {
+                  "fields": [
+                    {
+                      "type": 7,
+                      "typeName": "VacantEntry"
+                    }
+                  ],
+                  "index": 0,
+                  "name": "Vacant"
+                },
+                {
+                  "fields": [
+                    {
+                      "type": 0,
+                      "typeName": "T"
+                    }
+                  ],
+                  "index": 1,
+                  "name": "Occupied"
+                }
+              ]
+            }
+          },
+          "params": [
+            {
+              "name": "T",
+              "type": 0
+            }
+          ],
+          "path": [
+            "ink_storage",
+            "collections",
+            "stash",
+            "Entry"
+          ]
+        }
+      },
+      {
+        "id": 10,
+        "type": {
+          "def": {
+            "composite": {
+              "fields": [
+                {
+                  "name": "value",
+                  "type": 3,
+                  "typeName": "V"
+                },
+                {
+                  "name": "key_index",
+                  "type": 5,
+                  "typeName": "KeyIndex"
+                }
+              ]
+            }
+          },
+          "params": [
+            {
+              "name": "V",
+              "type": 3
+            }
+          ],
+          "path": [
+            "ink_storage",
+            "collections",
+            "hashmap",
+            "ValueEntry"
+          ]
+        }
+      },
+      {
+        "id": 11,
+        "type": {
+          "def": {
+            "variant": {
+              "variants": [
+                {
+                  "fields": [
+                    {
+                      "type": 7,
+                      "typeName": "VacantEntry"
+                    }
+                  ],
+                  "index": 0,
+                  "name": "Vacant"
+                },
+                {
+                  "fields": [
+                    {
+                      "type": 12,
+                      "typeName": "T"
+                    }
+                  ],
+                  "index": 1,
+                  "name": "Occupied"
+                }
+              ]
+            }
+          },
+          "params": [
+            {
+              "name": "T",
+              "type": 12
+            }
+          ],
+          "path": [
+            "ink_storage",
+            "collections",
+            "stash",
+            "Entry"
+          ]
+        }
+      },
+      {
+        "id": 12,
+        "type": {
+          "def": {
+            "tuple": [
+              0,
+              0
+            ]
+          }
+        }
+      },
+      {
+        "id": 13,
+        "type": {
+          "def": {
+            "composite": {
+              "fields": [
+                {
+                  "name": "value",
+                  "type": 14,
+                  "typeName": "V"
+                },
+                {
+                  "name": "key_index",
+                  "type": 5,
+                  "typeName": "KeyIndex"
+                }
+              ]
+            }
+          },
+          "params": [
+            {
+              "name": "V",
+              "type": 14
+            }
+          ],
+          "path": [
+            "ink_storage",
+            "collections",
+            "hashmap",
+            "ValueEntry"
+          ]
+        }
+      },
+      {
+        "id": 14,
+        "type": {
+          "def": {
+            "primitive": "bool"
+          }
+        }
+      },
+      {
+        "id": 15,
+        "type": {
+          "def": {
+            "variant": {
+              "variants": [
+                {
+                  "index": 0,
+                  "name": "None"
+                },
+                {
+                  "fields": [
+                    {
+                      "type": 0
+                    }
+                  ],
+                  "index": 1,
+                  "name": "Some"
+                }
+              ]
+            }
+          },
+          "params": [
+            {
+              "name": "T",
+              "type": 0
+            }
+          ],
+          "path": [
+            "Option"
+          ]
+        }
+      },
+      {
+        "id": 16,
+        "type": {
+          "def": {
+            "variant": {
+              "variants": [
+                {
+                  "fields": [
+                    {
+                      "type": 17
+                    }
+                  ],
+                  "index": 0,
+                  "name": "Ok"
+                },
+                {
+                  "fields": [
+                    {
+                      "type": 18
+                    }
+                  ],
+                  "index": 1,
+                  "name": "Err"
+                }
+              ]
+            }
+          },
+          "params": [
+            {
+              "name": "T",
+              "type": 17
+            },
+            {
+              "name": "E",
+              "type": 18
+            }
+          ],
+          "path": [
+            "Result"
+          ]
+        }
+      },
+      {
+        "id": 17,
+        "type": {
+          "def": {
+            "tuple": []
+          }
+        }
+      },
+      {
+        "id": 18,
+        "type": {
+          "def": {
+            "variant": {
+              "variants": [
+                {
+                  "index": 0,
+                  "name": "DisallowedTransfer"
+                },
+                {
+                  "index": 1,
+                  "name": "DisallowedMint"
+                },
+                {
+                  "index": 2,
+                  "name": "InexistentToken"
+                },
+                {
+                  "index": 3,
+                  "name": "NotAuthorized"
+                },
+                {
+                  "index": 4,
+                  "name": "NotSelling"
+                },
+                {
+                  "index": 5,
+                  "name": "InsufficientTransaction"
+                },
+                {
+                  "index": 6,
+                  "name": "MathOverflow"
+                }
+              ]
+            }
+          },
+          "path": [
+            "dotnft",
+            "dotnft",
+            "Error"
+          ]
+        }
+      },
+      {
+        "id": 19,
+        "type": {
+          "def": {
+            "sequence": {
+              "type": 20
+            }
+          }
+        }
+      },
+      {
+        "id": 20,
+        "type": {
+          "def": {
+            "tuple": [
+              3,
+              3
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "deploy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@polkadot/api": "^6.4.2",
+    "@polkadot/api-contract": "^6.4.2",
+    "@polkadot/rpc-core": "^6.4.2",
+    "@polkadot/types": "^6.4.2"
+  }
+}
