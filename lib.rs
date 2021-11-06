@@ -403,7 +403,7 @@ mod dotnft {
 		}
 
 		/// Removes a token from current offers
-		#[ink(message, payable)]
+		#[ink(message)]
 		pub fn unlist_offer(&mut self, token: TokenId) -> MutResult {
 			if !self.is_allowed(&token, &self.env().caller()) {
 				return Err(Error::NotAuthorized);
@@ -495,7 +495,6 @@ mod dotnft {
 	#[cfg(test)]
 	mod tests {
 		use super::*;
-		// use ink_env;
 		use ink_lang as ink;
 		use scale;
 
@@ -527,7 +526,8 @@ mod dotnft {
 				panic!("Bad event type, expected Transfer");
 			}
 
-			// FIXME: no field `topics` on type `__ink_EventBase`
+			// FIXME: no field `topics` on type `__ink_EventBase`, but this code is
+			// copy-paste from the official examples
 			// // assert correct indexing
 			// let expected_topics = vec![
 			// 	encoded_into_hash(&PrefixedValue { prefix: b"DotNft::Transfer", value: b"" }),
@@ -779,21 +779,21 @@ mod dotnft {
 // 	- [x] set another approval for Charlie -> approved == Charlie
 // 	- [x] transfer approval from Charlie to Dave -> approved == Dave
 // 	- [x] try to transfer token using Charlie -> owner == Alice
-// - [] operators
-// 	- [] set operator for Charlie
-// 	- [] transfer token to Bob using Charlie account
-// 	- [] revoke operator for Charlie
-// 	- [] try to transfer token to Bob using Charlie account
+// - [x] operators
+// 	- [x] set operator for Charlie
+// 	- [x] transfer token to Bob using Charlie account
+// 	- [x] revoke operator for Charlie
+// 	- [x] try to transfer token to Bob using Charlie account
 
-// TODO: execution time/wasm blob size optimizations -> need to be benchmarked
+// execution time/wasm blob size optimizations -> need to be benchmarked
 // - [] inlining or not inlining internal functions
 // - [] pointer usage
 // - [] storage book-keeping
-// TODO: storage optimizations
+// storage optimizations
 // - [x] book-keeping to remove unused keys from storage
 //		- [x] operators
 //		- [x] allowances
 //		- [x] empty token balances
-// TODO: misc optimizations
+// misc optimizations
 // - [x] call `unsafe_transfer` from minting
 // - [x] eliminate `add_token` and `dec_balance`

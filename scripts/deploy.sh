@@ -1,5 +1,5 @@
-# cargo +nightly contract test || exit 1
-# cargo +nightly contract build || exit 1
+cargo +nightly contract test || exit 1
+cargo +nightly contract build || exit 1
 
 (
   cd deploy || exit 1
